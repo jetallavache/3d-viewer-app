@@ -1,0 +1,47 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>resources/line-control-icon.png</file>
+        <file>resources/projection-control-icon.png</file>
+        <file>resources/transform-control-icon.png</file>
+        <file>resources/vertexes-control-icon.png</file>
+        <file>resources/background-control-icon.png</file>
+        <file>resources/about-icon.png</file>
+        <file>resources/color-window-icon.png</file>
+        <file>resources/delete-file-icon.png</file>
+        <file>resources/exit-file-icon.png</file>
+        <file>resources/export-animation-icon.png</file>
+        <file>resources/hide-window-icon.png</file>
+        <file>resources/open-file-icon.png</file>
+        <file>resources/save-file-icon.png</file>
+        <file>resources/show-window-icon.png</file>
+        <file>resources/center-mouse-icon.png</file>
+        <file>resources/dxz.png</file>
+        <file>resources/dxy.png</file>
+        <file>resources/dyz.png</file>
+        <file>resources/rx.png</file>
+        <file>resources/ry.png</file>
+        <file>resources/rz.png</file>
+        <file>resources/s.png</file>
+        <file>resources/left-mouse.png</file>
+        <file>resources/right-mouse.png</file>
+        <file>resources/wheel-mouse.png</file>
+    </qresource>
+    <qresource prefix="/file-icon"/>
+    <qresource prefix="/">
+        <file>resources/fileicon/file.png</file>
+        <file>resources/fileicon/folder.png</file>
+        <file>resources/fileicon/folderup.png</file>
+        <file>resources/fileicon/zip.png</file>
+        <file>resources/fileicon/html.png</file>
+        <file>resources/fileicon/jpg.png</file>
+        <file>resources/fileicon/obj.png</file>
+        <file>resources/fileicon/png.png</file>
+        <file>resources/fileicon/tar.png</file>
+        <file>resources/fileicon/txt.png</file>
+        <file>resources/fileicon/gif.png</file>
+    </qresource>
+    <qresource prefix="/ttf"/>
+    <qresource prefix="/">
+        <file>resources/ttf/Hack-Regular.ttf</file>
+    </qresource>
+</RCC>

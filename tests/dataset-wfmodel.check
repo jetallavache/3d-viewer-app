@@ -1,0 +1,72 @@
+#test check_count_vertexes_and_faces
+  char *name  = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+  
+  ck_assert_int_eq(OK, status);          
+  ck_assert_int_eq(model->vrts_COUNT, 8);        
+  ck_assert_int_eq(model->fcs_COUNT, 12);       
+  ck_assert_ptr_ne(f, NULL);                  
+  
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+  // ck_assert_ptr_eq(f, NULL);  
+
+#test check_array_coordinates_and_array_indexes
+  char *name  = "tests/test-sample.obj";           
+  FILE *f = NULL;                                      
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));               
+  int status = kernel_utils_open_file(&f, name);           
+  if (!status) status = kernel_dataset_file_to_object(f, model);              
+  
+  ck_assert_int_eq(OK, status);                   
+  ck_assert_int_eq((int)(model->crds_ARR[0] * 10), 5);    
+  ck_assert_int_eq((int)(model->crds_ARR[1] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[2] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[3] * 10), 5);    
+  ck_assert_int_eq((int)(model->crds_ARR[4] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[5] * 10), 5);    
+  ck_assert_int_eq((int)(model->crds_ARR[6] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[7] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[8] * 10), 5);    
+  ck_assert_int_eq((int)(model->crds_ARR[9] * 10), -5);   
+  ck_assert_int_eq((int)(model->crds_ARR[10] * 10), -5);  
+  ck_assert_int_eq((int)(model->crds_ARR[11] * 10), -5);  
+  ck_assert_int_eq((int)(model->crds_ARR[12] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[13] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[14] * 10), -5);  
+  ck_assert_int_eq((int)(model->crds_ARR[15] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[16] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[17] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[18] * 10), -5);  
+  ck_assert_int_eq((int)(model->crds_ARR[19] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[20] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[21] * 10), -5);  
+  ck_assert_int_eq((int)(model->crds_ARR[22] * 10), 5);   
+  ck_assert_int_eq((int)(model->crds_ARR[23] * 10), -5);  
+  
+  ck_assert_int_eq(model->num_vrts_forming_fc_ARR[3], 3);
+
+  ck_assert_int_eq(model->fcs_ARR[2].vrts[0], 5);   
+  ck_assert_int_eq(model->fcs_ARR[2].vrts[1], 6);   
+  ck_assert_int_eq(model->fcs_ARR[2].vrts[2], 2);              
+  ck_assert_int_eq(model->fcs_ARR[3].vrts[0], 6);   
+  ck_assert_int_eq(model->fcs_ARR[3].vrts[1], 7);   
+  ck_assert_int_eq(model->fcs_ARR[3].vrts[2], 3);   
+  
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+
+#test check_define_center
+  char *name  = "tests/test-sample.obj";           
+  FILE *f = NULL;                                      
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));               
+  int status = kernel_utils_open_file(&f, name);           
+  if (!status) status = kernel_dataset_file_to_object(f, model);              
+  
+  ck_assert_int_eq(OK, status);
+
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);

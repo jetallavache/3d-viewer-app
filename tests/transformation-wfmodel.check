@@ -1,0 +1,173 @@
+#test check_transformation_move
+  char *name = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+
+  ck_assert_int_eq(OK, status);                  
+  
+  double x = 1.81;
+  double y = 2.731;
+  double z = 1.2345;
+
+  kernel_transform_move_x(model, x);
+  kernel_transform_move_y(model, y);
+  kernel_transform_move_z(model, z);
+  
+  ck_assert_double_eq((model->crds_ARR[0]), 0.5 + x);    
+  ck_assert_double_eq((model->crds_ARR[1]), -0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[2]), -0.5 + z);   
+  ck_assert_double_eq((model->crds_ARR[3]), 0.5 + x);    
+  ck_assert_double_eq((model->crds_ARR[4]), -0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[5]), 0.5 + z);    
+  ck_assert_double_eq((model->crds_ARR[6]), -0.5 + x);   
+  ck_assert_double_eq((model->crds_ARR[7]), -0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[8]), 0.5 + z);    
+  ck_assert_double_eq((model->crds_ARR[9]), -0.5 + x);   
+  ck_assert_double_eq((model->crds_ARR[10]), -0.5 + y);  
+  ck_assert_double_eq((model->crds_ARR[11]), -0.5 + z);  
+  ck_assert_double_eq((model->crds_ARR[12]), 0.5 + x);   
+  ck_assert_double_eq((model->crds_ARR[13]), 0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[14]), -0.5 + z);  
+  ck_assert_double_eq((model->crds_ARR[15]), 0.5 + x);   
+  ck_assert_double_eq((model->crds_ARR[16]), 0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[17]), 0.5 + z);   
+  ck_assert_double_eq((model->crds_ARR[18]), -0.5 + x);  
+  ck_assert_double_eq((model->crds_ARR[19]), 0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[20]), 0.5 + z);   
+  ck_assert_double_eq((model->crds_ARR[21]), -0.5 + x);  
+  ck_assert_double_eq((model->crds_ARR[22]), 0.5 + y);   
+  ck_assert_double_eq((model->crds_ARR[23]), -0.5 + z);  
+    
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+
+#test check_transformation_rescale
+  char *name = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+  double scale = 0.6;
+  kernel_transform_rescale(model, scale);
+  
+  ck_assert_int_eq(OK, status);                                   
+  ck_assert_double_eq((model->crds_ARR[0]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[1]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[2]), 0.5 * (scale - scale * -1));                    
+  ck_assert_double_eq((model->crds_ARR[3]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[4]), 0.5 * (scale - scale * -1));                    
+  ck_assert_double_eq((model->crds_ARR[5]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[6]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[7]), 0.5 * (scale - scale * -1));                    
+  ck_assert_double_eq((model->crds_ARR[8]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[9]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[10]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[11]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[12]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[13]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[14]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[15]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[16]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[17]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[18]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[19]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[20]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[21]), 0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[22]), -0.5 * (scale - scale * -1));  
+  ck_assert_double_eq((model->crds_ARR[23]), 0.5 * (scale - scale * -1));   
+    
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+
+#test check_transformation_rotation_x
+  char *name = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+
+  double x = 90;
+  double sin_x = sin(x);
+  double cos_x = cos(x);
+  kernel_transform_rotate_x(model, x);
+
+  ck_assert_int_eq(OK, status);            
+  ck_assert_double_eq((model->crds_ARR[0]), 0.5);  
+  ck_assert_double_eq((model->crds_ARR[1]), cos_x * -0.5 - sin_x * -0.5);                    
+  ck_assert_double_eq((model->crds_ARR[3]), 0.5);                         
+  ck_assert_double_eq((model->crds_ARR[4]), cos_x * -0.5 - sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[6]), -0.5);                        
+  ck_assert_double_eq((model->crds_ARR[7]), cos_x * -0.5 - sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[9]), -0.5);                        
+  ck_assert_double_eq((model->crds_ARR[10]), cos_x * -0.5 - sin_x * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[12]), 0.5);      
+  ck_assert_double_eq((model->crds_ARR[13]), cos_x * 0.5 - sin_x * -0.5);                     
+  ck_assert_double_eq((model->crds_ARR[15]), 0.5);                        
+  ck_assert_double_eq((model->crds_ARR[16]), cos_x * 0.5 - sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[18]), -0.5);                       
+  ck_assert_double_eq((model->crds_ARR[19]), cos_x * 0.5 - sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[21]), -0.5);                       
+  ck_assert_double_eq((model->crds_ARR[22]), cos_x * 0.5 - sin_x * -0.5);    
+  
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+
+#test check_transformation_rotation_y
+  char *name = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+
+  double y = 90;
+  double sin_y = sin(y);
+  double cos_y = cos(y);
+  kernel_transform_rotate_y(model, y);
+  
+  ck_assert_int_eq(OK, status);                                   
+  ck_assert_double_eq((model->crds_ARR[0]), cos_y * 0.5 + sin_y * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[3]), cos_y * 0.5 + sin_y * 0.5);   
+  ck_assert_double_eq((model->crds_ARR[6]), cos_y * -0.5 + sin_y * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[9]), cos_y * -0.5 + sin_y * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[12]), cos_y * 0.5 + sin_y * -0.5);                     
+  ck_assert_double_eq((model->crds_ARR[15]), cos_y * 0.5 + sin_y * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[18]), cos_y * -0.5 + sin_y * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[21]), cos_y * -0.5 + sin_y * -0.5);   
+
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);
+
+#test check_transformation_rotation_z
+  char *name = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  WireframeModel *model = malloc(1 * sizeof(WireframeModel));      
+  int status = kernel_utils_open_file(&f, name);  
+  if (!status) status = kernel_dataset_file_to_object(f, model);     
+
+  double x = 90;
+  double sin_x = sin(x);
+  double cos_x = cos(x);
+  kernel_transform_rotate_z(model, x);
+  
+  ck_assert_int_eq(OK, status);             
+  ck_assert_double_eq((model->crds_ARR[2]), -0.5);  
+  ck_assert_double_eq((model->crds_ARR[1]), cos_x * -0.5 + sin_x * 0.5);                     
+  ck_assert_double_eq((model->crds_ARR[5]), 0.5);                         
+  ck_assert_double_eq((model->crds_ARR[4]), cos_x * -0.5 + sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[8]), 0.5);  
+  ck_assert_double_eq((model->crds_ARR[7]), cos_x * -0.5 + sin_x * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[11]), -0.5);     
+  ck_assert_double_eq((model->crds_ARR[10]), cos_x * -0.5 + sin_x * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[14]), -0.5);     
+  ck_assert_double_eq((model->crds_ARR[13]), cos_x * 0.5 + sin_x * 0.5);                      
+  ck_assert_double_eq((model->crds_ARR[17]), 0.5);                        
+  ck_assert_double_eq((model->crds_ARR[16]), cos_x * 0.5 + sin_x * 0.5);  
+  ck_assert_double_eq((model->crds_ARR[20]), 0.5);                        
+  ck_assert_double_eq((model->crds_ARR[19]), cos_x * 0.5 + sin_x * -0.5);  
+  ck_assert_double_eq((model->crds_ARR[23]), -0.5);    
+  ck_assert_double_eq((model->crds_ARR[22]), cos_x * 0.5 + sin_x * -0.5);    
+
+  kernel_utils_close_file(&f);
+  kernel_dataset_free(&model);

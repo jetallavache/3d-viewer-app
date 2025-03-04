@@ -1,0 +1,14 @@
+#test file_open_ok
+  char *name  = "tests/test-sample.obj";  
+  FILE *f = NULL;                             
+  int status = kernel_utils_open_file(&f, name);  
+  ck_assert_int_eq(OK, status);          
+  ck_assert_ptr_ne(f, NULL);                  
+  kernel_utils_close_file(&f);
+
+#test file_open_fail
+  char *name  = "cube.txt";              
+  FILE *f = NULL;                             
+  int status = kernel_utils_open_file(&f, name);  
+  ck_assert_int_eq(FAIL, status);             
+  ck_assert_ptr_eq(f, NULL);  
