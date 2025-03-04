@@ -1,4 +1,4 @@
-# 3DViewer-v1.0
+# 3d-viewer-app
 
 [![CMake version](https://img.shields.io/badge/CMake-3.5+-064F8C?logo=cmake)](https://www.qt.io)
 [![C++ version](https://img.shields.io/badge/C++-17-00599C?logo=++)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf)
